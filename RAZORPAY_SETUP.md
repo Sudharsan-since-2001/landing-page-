@@ -22,10 +22,14 @@
    - Example: `key: 'rzp_test_1234567890abcd'`
 
 4. **Test the Payment**:
-   - Use Razorpay's test cards for testing:
+   - **IMPORTANT**: Do NOT scan the QR code with your real phone/UPI app (GPay, PhonePe). It will fail because this is "Test Mode".
+   - **Recommended Method**: Select **Card** option and use these test details:
      - Card Number: `4111 1111 1111 1111`
-     - CVV: Any 3 digits
-     - Expiry: Any future date
+     - CVV: `123`
+     - Expiry: Any future date (e.g., `12/30`)
+   - **To Test UPI**:
+     - Do not use "Show QR Code".
+     - Instead, click **UPI** -> Enter VPA: `success@razorpay` -> Click "Pay Now".
    - When payment succeeds, the ebook will automatically download
 
 5. **Go Live**:
