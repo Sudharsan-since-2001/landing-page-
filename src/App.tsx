@@ -12,39 +12,54 @@ declare global {
 function App() {
     const [activeModal, setActiveModal] = useState<null | 'success' | 'privacy' | 'terms' | 'contact'>(null);
 
-    const handlePayment = () => {
-        const options = {
-            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-            amount: 1000,
-            currency: 'INR',
-            capture: 1, // <--- ADD THIS LINE TO FIX AUTO-REFUND
-            name: 'Two Quiet Minutes',
-            description: 'The 3-Page Blueprint to Mastering Your Craft',
-            image: '/book-cover.png',
-            handler: function (response: any) {
-                // Payment successful
-                setActiveModal('success');
+    const handlePayment = async () => {
+        try {
+            // 1. Create Order on our backend
+            const response = await fetch('/api/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
 
-                // User has paid, try to auto-download
-                const link = document.createElement('a');
-                link.href = '/ebook.pdf';
-                link.download = 'Two_Quiet_Minutes.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            },
-            prefill: {
-                name: '',
-                email: '',
-                contact: ''
-            },
-            theme: {
-                color: '#6B8E6B'
-            }
-        };
+            if (!response.ok) throw new Error('Failed to create order');
+            const order = await response.json();
 
-        const razorpay = new window.Razorpay(options);
-        razorpay.open();
+            // 2. Open Razorpay with the Order ID
+            const options = {
+                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                amount: order.amount,
+                currency: order.currency,
+                name: 'Two Quiet Minutes',
+                description: 'The 3-Page Blueprint to Mastering Your Craft',
+                image: '/book-cover.png',
+                order_id: order.id, // <--- IMPORTANT: Link the payment to the Order
+                handler: function (response: any) {
+                    // Payment successful
+                    setActiveModal('success');
+
+                    // User has paid, try to auto-download
+                    const link = document.createElement('a');
+                    link.href = '/ebook.pdf';
+                    link.download = 'Two_Quiet_Minutes.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                prefill: {
+                    name: '',
+                    email: '',
+                    contact: ''
+                },
+                theme: {
+                    color: '#6B8E6B'
+                }
+            };
+
+            const razorpay = new window.Razorpay(options);
+            razorpay.open();
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('Something went wrong with the payment process. Please try again.');
+        }
     };
 
     const downloadEbook = () => {
