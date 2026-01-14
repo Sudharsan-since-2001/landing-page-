@@ -17,6 +17,7 @@ function App() {
             key: import.meta.env.VITE_RAZORPAY_KEY_ID,
             amount: 1000,
             currency: 'INR',
+            capture: 1, // <--- ADD THIS LINE TO FIX AUTO-REFUND
             name: 'Two Quiet Minutes',
             description: 'The 3-Page Blueprint to Mastering Your Craft',
             image: '/book-cover.png',
