@@ -2,7 +2,7 @@
 
 A premium, high-converting landing page for your ebook.
 
-## ✨ Features
+✨ Features
 
 - **Premium Aesthetics**: Modern dark theme with glassmorphism and smooth gradients.
 - **Micro-animations**: Powered by Framer Motion for a fluid user experience.
@@ -46,3 +46,4 @@ npx vercel
 - `src/App.tsx`: The main landing page component.
 - `src/index.css`: The global styles and design system.
 - `src/main.tsx`: The entry point for the React application.
+
