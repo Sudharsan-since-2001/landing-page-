@@ -10,7 +10,7 @@ A premium, high-converting landing page for your ebook that is personalised for 
 - **Lucide Icons**: Crisp, scalable icons for visual clarity.
 - **Vercel Friendly**: Zero-config deployment to Vercel.
 
-## 🚀 Getting Started
+Getting Started
 
 1. **Install Dependencies**:
    ```bash
@@ -27,7 +27,7 @@ A premium, high-converting landing page for your ebook that is personalised for 
    npm run build
    ```
 
-## 🌐 Deployment (Vercel)
+Deployment (Vercel)
 
 To deploy this landing page to Vercel:
 
@@ -40,11 +40,12 @@ Alternatively, use the Vercel CLI:
 npx vercel
 ```
 
-## 📁 Project Structure
+Project Structure
 
 - `public/`: Contains static assets like the book cover and the ebook PDF.
 - `src/App.tsx`: The main landing page component.
 - `src/index.css`: The global styles and design system.
 - `src/main.tsx`: The entry point for the React application.
+
 
 
