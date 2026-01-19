@@ -1,6 +1,6 @@
-# Ebook Landing Page
+Ebook Landing Page
 
-A premium, high-converting landing page for your ebook.
+A premium, high-converting landing page for your ebook that is personalised for me.
 
 ✨ Features
 
@@ -46,4 +46,5 @@ npx vercel
 - `src/App.tsx`: The main landing page component.
 - `src/index.css`: The global styles and design system.
 - `src/main.tsx`: The entry point for the React application.
+
 
